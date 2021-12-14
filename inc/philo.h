@@ -19,14 +19,15 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-typedef struct s_data
+typedef struct s_info
 {
-    int *nbrs;
-}t_data;
+	int *nbrs;
+	int	num;
+}t_info;
 
 
 //check errors
-int	check_errors(char **argv, int argc);
+void	check_errors(char **argv, int argc);
 
 //libft
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -35,7 +36,7 @@ char	**ft_split(char const *s, char c);
 void	*ft_calloc(size_t count, size_t size);
 char	**ft_free_malloc(char **str);
 void	ft_bzero(void *s, size_t n);
-int	ft_isdigit(int c);
+int 	ft_isdigit(int c);
 long	atoi_update(const char *str);
 char	*ft_strdup(const char *s1);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);

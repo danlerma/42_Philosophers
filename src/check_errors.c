@@ -51,11 +51,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-static int	check_numbers(char **split)
+static void	check_numbers(char **split, t_info *info)
 {
 	int	i;
 	int	y;
-	int	*nbrs;
 
 	i = -1;
 	while (split[++i] != NULL)
@@ -66,18 +65,16 @@ static int	check_numbers(char **split)
 		if (atoi_update(split[i]) > MAX_INT || atoi_update(split[i]) < MIN_INT)
 			exit(0);
 	}
-	nbrs = ft_calloc(i, sizeof(int));
-	if (nbrs == NULL)
-		return (0);
+	info->nbrs = ft_calloc(i, sizeof(int));
+	if (info->nbrs == NULL)
+		exit(0);
 	y = -1;
 	while (++y < i)
 	{
-		nbrs[y] = atoi_update(split[y]);
-		if (nbrs[y] < 1)
+		info->nbrs[y] = atoi_update(split[y]);
+		if (info->nbrs[y] < 1)
 			exit(0);
 	}
-	free(nbrs);
-	return (i);
 }
 
 static char	*union_argv(char **argv, int argc)
@@ -101,11 +98,11 @@ static char	*union_argv(char **argv, int argc)
 	return (str);
 }
 
-int	check_errors(char **argv, int argc)
+void	check_errors(char **argv, int argc)
 {
 	char	*str;
-	int		nbr;
 	char	**split;
+	t_info	*info;
 
 	str = union_argv(argv, argc);
 	split = ft_split(str, ' ');
@@ -113,12 +110,13 @@ int	check_errors(char **argv, int argc)
 	{
 		ft_free_malloc(split);
 		free(str);
-		return (0);
+		exit(0);
 	}
-	nbr = check_numbers(split);
+	info = ft_calloc(1, sizeof(t_info));
+	if (info == NULL)
+		exit(0);
+	info->num = argc - 2;
+	check_numbers(split, info);
 	ft_free_malloc(split);
 	free(str);
-	if (nbr == 0)
-		return (0);
-	return (nbr);
 }
