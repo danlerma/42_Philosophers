@@ -28,7 +28,7 @@ INC_PATH = inc
 #                                    SRCS                                      #
 #··············································································#
 
-SRCS = main.c
+SRCS = main.c atoi_update.c check_errors.c libft.c
 OBJS_NAME = $(SRCS:%.c=%.o)
 OBJS = $(addprefix $(OBJ_PATH)/, $(OBJS_NAME))
 

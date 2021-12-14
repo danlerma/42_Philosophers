@@ -14,7 +14,9 @@
 
 int main(int argc, char **argv)
 {
-	(void)argv;
+	
+	check_errors(argv, argc);
+	printf("jsgweohgwe");
 	if (argc == 6)
 	{
 		printf("Parte con numero de veces que tienen que comer los filosofos\n");
