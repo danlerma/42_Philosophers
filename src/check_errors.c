@@ -98,11 +98,10 @@ static char	*union_argv(char **argv, int argc)
 	return (str);
 }
 
-void	check_errors(char **argv, int argc)
+void	check_errors(char **argv, int argc, t_info *info)
 {
 	char	*str;
 	char	**split;
-	t_info	*info;
 
 	str = union_argv(argv, argc);
 	split = ft_split(str, ' ');
@@ -112,9 +111,6 @@ void	check_errors(char **argv, int argc)
 		free(str);
 		exit(0);
 	}
-	info = ft_calloc(1, sizeof(t_info));
-	if (info == NULL)
-		exit(0);
 	info->num = argc - 2;
 	check_numbers(split, info);
 	ft_free_malloc(split);

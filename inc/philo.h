@@ -18,6 +18,7 @@
 # define MIN_INT -2147483648
 # include <stdio.h>
 # include <stdlib.h>
+# include <pthread.h>
 
 typedef struct s_info
 {
@@ -27,7 +28,9 @@ typedef struct s_info
 
 
 //check errors
-void	check_errors(char **argv, int argc);
+void	check_errors(char **argv, int argc, t_info *info);
+//make_philo
+void	make_philo(t_info *info);
 
 //libft
 char	*ft_strjoin(char const *s1, char const *s2);

@@ -14,14 +14,20 @@
 
 int main(int argc, char **argv)
 {
+	t_info *info;
+
+	info = ft_calloc(1, sizeof(t_info));
+	if (info == NULL)
+		exit(0);
 	if (argc == 6)
 	{
-		check_errors(argv, argc);
+		check_errors(argv, argc, info);
+		make_philo(info);
 		printf("Parte con numero de veces que tienen que comer los filosofos\n");
 	}
 	else if (argc == 5)
 	{
-		check_errors(argv, argc);
+		check_errors(argv, argc, info);
 		printf("Parte normal de los filosofos\n");
 	}
 	return (0);

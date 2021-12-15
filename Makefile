@@ -28,7 +28,7 @@ INC_PATH = inc
 #                                    SRCS                                      #
 #··············································································#
 
-SRCS = main.c atoi_update.c check_errors.c libft.c split.c
+SRCS = main.c atoi_update.c check_errors.c libft.c split.c make_philo.c
 OBJS_NAME = $(SRCS:%.c=%.o)
 OBJS = $(addprefix $(OBJ_PATH)/, $(OBJS_NAME))
 
@@ -37,7 +37,7 @@ OBJS = $(addprefix $(OBJ_PATH)/, $(OBJS_NAME))
 #··············································································#
 
 CC = gcc
-CFLAGS =  -Wall -Werror -Wextra -g3
+CFLAGS =  -Wall -Werror -Wextra -g3 -pthread
 #include <xx.h> // path of .h
 CFLAGS += -I $(INC_PATH)
 #··············································································#
