@@ -17,6 +17,7 @@ int main(int argc, char **argv)
 	t_info *info;
 
 	info = ft_calloc(1, sizeof(t_info));
+		get_time(info);
 	if (info == NULL)
 		exit(0);
 	if (argc == 6)

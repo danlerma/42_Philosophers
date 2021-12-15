@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 typedef struct s_philo
 {
@@ -31,6 +32,7 @@ typedef struct s_info
 {
 	int *nbrs;
 	int	num;
+	int	time;
 }t_info;
 
 
@@ -38,7 +40,8 @@ typedef struct s_info
 void	check_errors(char **argv, int argc, t_info *info);
 //make_philo
 void	make_philo(t_info *info);
-
+//philo_utils
+void	get_time(t_info *info);
 //libft
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *c);
