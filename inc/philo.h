@@ -20,6 +20,13 @@
 # include <stdlib.h>
 # include <pthread.h>
 
+typedef struct s_philo
+{
+	pthread_t	id_thread;
+	int			id;
+}t_philo;
+
+
 typedef struct s_info
 {
 	int *nbrs;

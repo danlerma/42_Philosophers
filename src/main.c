@@ -30,5 +30,6 @@ int main(int argc, char **argv)
 		check_errors(argv, argc, info);
 		printf("Parte normal de los filosofos\n");
 	}
+	
 	return (0);
 }
