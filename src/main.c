@@ -17,19 +17,14 @@ int main(int argc, char **argv)
 	t_info *info;
 
 	info = ft_calloc(1, sizeof(t_info));
-		get_time(info);
 	if (info == NULL)
 		exit(0);
-	if (argc == 6)
+	if (argc == 6 || argc == 5)
 	{
 		check_errors(argv, argc, info);
+		first_data(info);
+		//show_info(info);
 		make_philo(info);
-		printf("Parte con numero de veces que tienen que comer los filosofos\n");
-	}
-	else if (argc == 5)
-	{
-		check_errors(argv, argc, info);
-		printf("Parte normal de los filosofos\n");
 	}
 	
 	return (0);

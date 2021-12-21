@@ -1,11 +1,12 @@
 #include<philo.h>
 
-static void *create_philo(void *num)
+static void *create_philo(void *p)
 {
-	int n = *((int *)num);
+	t_philo	*philo;
 
-	printf("N-> %d\n", n);
-		printf("Soy el hilo %d\n", n);
+	philo = (t_philo *) p;
+	printf("N-> LLLLL\n");
+	printf("ID(%ld)  Tiempo %ld\n",philo->id_thread,( get_time() - philo->info->time));
 	return (NULL);
 }
 
@@ -32,7 +33,8 @@ void	make_philo(t_info *info)
 	printf("INFO NBR-> %d\n", info->nbrs[0]);
 	while (i < info->nbrs[0])
 	{
-		pthread_create(&philo[i].id_thread, NULL, create_philo, &i);
+		philo[i].info = info;
+		pthread_create(&philo[i].id_thread, NULL, create_philo, &philo[i]);
 		philo[i].id = i;
 		i++;
 	}

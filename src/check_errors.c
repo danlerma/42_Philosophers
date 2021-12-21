@@ -111,8 +111,10 @@ void	check_errors(char **argv, int argc, t_info *info)
 		free(str);
 		exit(0);
 	}
-	info->num = argc - 2;
+	info->argc = argc - 1;
 	check_numbers(split, info);
 	ft_free_malloc(split);
 	free(str);
+	if (info->nbrs[0] > 200)
+		exit(0);
 }

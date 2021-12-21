@@ -21,27 +21,36 @@
 # include <pthread.h>
 # include <sys/time.h>
 
+typedef struct s_info
+{
+	int		*nbrs;
+	int		argc;
+	int		n_forks;
+	int		t_eat;
+	int		t_sleep;
+	int		t_die;
+	int		must_eat;
+	long	time;
+}t_info;
+
 typedef struct s_philo
 {
 	pthread_t	id_thread;
 	int			id;
+	long		time_to_eat;
+	long		time_to_sleep;
+	long		time_to_die;
+	t_info		*info;
 }t_philo;
-
-
-typedef struct s_info
-{
-	int *nbrs;
-	int	num;
-	int	time;
-}t_info;
-
 
 //check errors
 void	check_errors(char **argv, int argc, t_info *info);
 //make_philo
 void	make_philo(t_info *info);
 //philo_utils
-void	get_time(t_info *info);
+long	get_time(void);
+void	first_data(t_info *info);
+void	show_info(t_info *info);
 //libft
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *c);
