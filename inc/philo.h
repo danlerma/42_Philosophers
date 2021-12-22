@@ -16,6 +16,13 @@
 
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
+# define RED "\033[1;31m"
+# define CYAN "\033[1;36m"
+# define GREY "\033[1;90m"
+# define YELLOW "\033[1;32m"
+# define MAGENTA "\033[1;35m"
+# define RESET "\033[0m"
+
 # include <stdio.h>
 # include <stdlib.h>
 # include <pthread.h>
@@ -23,24 +30,26 @@
 
 typedef struct s_info
 {
-	int		*nbrs;
-	int		argc;
-	int		n_forks;
-	int		t_eat;
-	int		t_sleep;
-	int		t_die;
-	int		must_eat;
-	long	time;
+	int				*nbrs;
+	int				argc;
+	int				n_forks;
+	int				t_eat;
+	int				t_think;
+	int				t_sleep;
+	int				t_die;
+	int				must_eat;
+	long			time;
 }t_info;
 
 typedef struct s_philo
 {
-	pthread_t	id_thread;
-	int			id;
-	long		time_to_eat;
-	long		time_to_sleep;
-	long		time_to_die;
-	t_info		*info;
+	pthread_t		id_thread;
+	pthread_mutex_t	m_fork;
+	int				id;
+	long			time_to_eat;
+	long			time_to_sleep;
+	long			time_to_die;
+	t_info			*info;
 }t_philo;
 
 //check errors
@@ -50,6 +59,7 @@ void	make_philo(t_info *info);
 //philo_utils
 long	get_time(void);
 void	first_data(t_info *info);
+void	print_actions(t_philo philo);
 void	show_info(t_info *info);
 //libft
 char	*ft_strjoin(char const *s1, char const *s2);

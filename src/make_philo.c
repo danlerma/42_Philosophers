@@ -34,8 +34,9 @@ void	make_philo(t_info *info)
 	while (i < info->nbrs[0])
 	{
 		philo[i].info = info;
-		pthread_create(&philo[i].id_thread, NULL, create_philo, &philo[i]);
 		philo[i].id = i;
+		print_actions(philo[i]);
+		pthread_create(&philo[i].id_thread, NULL, create_philo, &philo[i]);
 		i++;
 	}
 	dead(philo, info);
