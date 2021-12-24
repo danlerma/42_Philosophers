@@ -29,7 +29,7 @@ INC_PATH = inc
 #··············································································#
 
 SRCS = main.c atoi_update.c check_errors.c libft.c split.c make_philo.c\
-		philo_utils.c
+		philo_utils.c actions.c
 OBJS_NAME = $(SRCS:%.c=%.o)
 OBJS = $(addprefix $(OBJ_PATH)/, $(OBJS_NAME))
 

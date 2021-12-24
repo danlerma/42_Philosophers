@@ -19,7 +19,7 @@
 # define RED "\033[1;31m"
 # define CYAN "\033[1;36m"
 # define GREY "\033[1;90m"
-# define YELLOW "\033[1;32m"
+# define YELLOW "\033[1;33m"
 # define MAGENTA "\033[1;35m"
 # define RESET "\033[0m"
 
@@ -39,6 +39,7 @@ typedef struct s_info
 	int				t_die;
 	int				must_eat;
 	long			time;
+	struct s_philo	*philo;
 }t_info;
 
 typedef struct s_philo
@@ -61,6 +62,10 @@ long	get_time(void);
 void	first_data(t_info *info);
 void	print_actions(t_philo philo);
 void	show_info(t_info *info);
+void	my_usleep(long time);
+//actions
+void	eat(t_philo *philo);
+void	dead(t_philo *philo, t_info *info);
 //libft
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *c);

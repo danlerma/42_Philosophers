@@ -24,6 +24,15 @@ void	first_data(t_info *info)
 	info->time = get_time();
 }
 
+void	my_usleep(long time)
+{
+	long	now;
+
+	now = get_time();
+	while (get_time() - now < time)
+		;
+}
+
 void	print_actions(t_philo philo)
 {
 	printf(YELLOW"[%ld] philo [%d] has taken a fork\n",
