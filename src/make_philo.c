@@ -24,7 +24,7 @@ static void *create_philo(void *p)
 		printf(RESET);
 		printf("SHGUESG_ %ld\n", get_time() - philo->info->time);
 		if ((get_time() - philo->info->time) >= philo->info->t_die)
-			break;
+			dead(philo, philo->info);
 	}
 	return (NULL);
 }

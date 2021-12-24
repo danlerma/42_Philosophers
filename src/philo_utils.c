@@ -17,6 +17,10 @@ void	first_data(t_info *info)
 	info->t_die = info->nbrs[1];
 	info->t_eat = info->nbrs[2];
 	info->t_sleep = info ->nbrs[3];
+	if (info->t_die > info->t_sleep)
+		info->t_think = info->t_die - info->t_sleep;
+	else
+		info->t_think = 0; 
 	if (info->argc == 5)
 		info->must_eat = info->nbrs[4];
 	else

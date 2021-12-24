@@ -20,4 +20,5 @@ void	dead(t_philo *philo, t_info *info)
 			get_time() - philo->info->time, philo->id);
 		i++;
 	}
+	exit(0);
 }
