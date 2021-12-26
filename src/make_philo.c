@@ -1,6 +1,6 @@
 #include<philo.h>
 
-static void *create_philo(void *p)
+ void *create_philo(void *p)
 {
 	t_philo	*philo;
 
@@ -12,7 +12,7 @@ static void *create_philo(void *p)
 		printf("ID-> %d    %ld\n", philo->id, philo->id_thread);
 	while (1)
 	{
-		eat(philo);
+		//eat(philo);
 		//sleep(philo);
 	}
 	return (NULL);
@@ -27,16 +27,20 @@ void	make_philo(t_info *info)
 	philo = malloc(info->nbrs[0] + 1 * sizeof(t_philo));
 	if (philo == NULL)
 		exit(0);
-	info->philo = malloc(info->n_forks + 1 * sizeof(t_philo));
+	info->philo = malloc(info->n_forks + 1 * sizeof(t_philo *));
 	if (info->philo == NULL)
 		exit(0);
 	while (i < info->n_forks)
 	{
 		philo[i].info = info;
 		philo[i].id = i;
-		info->philo[i] = philo[i];
+		philo[i].prueba = 100;
+		printf("PRUEBA DESDE PHILO %d = %d\n", philo[i].id, philo[i].prueba);
+		info->philo[i] = &philo[i];
+		philo->info->philo[i]->prueba = 300;
+		printf("PRUEBA DESDE INFO  %d = %d\n", philo[i].id, philo[i].prueba);
 		pthread_mutex_init(&philo[i].m_fork, NULL);
-		pthread_create(&philo[i].id_thread, NULL, create_philo, &philo[i]);
+		//pthread_create(&philo[i].id_thread, NULL, create_philo, &philo[i]);
 		i++;
 	}
 	//dead(philo, info);

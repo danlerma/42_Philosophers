@@ -39,7 +39,7 @@ typedef struct s_info
 	int				t_die;
 	int				must_eat;
 	long			time;
-	struct s_philo	*philo;
+	struct s_philo	**philo;
 }t_info;
 
 typedef struct s_philo
@@ -47,6 +47,7 @@ typedef struct s_philo
 	pthread_t		id_thread;
 	pthread_mutex_t	m_fork;
 	int				id;
+	int				prueba;
 	t_info			*info;
 }t_philo;
 
