@@ -96,7 +96,7 @@ char	**ft_split(char const *s, char c)
 	if (s == NULL)
 		return (NULL);
 	nrows = count_rows(s, c);
-	str = ft_calloc(sizeof(char *), (nrows + 1));
+	str = ft_calloc((nrows + 1), sizeof(char *));
 	if (str == NULL)
 		return (NULL);
 	str = assing_str(str, s, c, nrows);

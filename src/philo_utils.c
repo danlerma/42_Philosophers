@@ -39,15 +39,15 @@ void	my_usleep(long time)
 
 void	print_actions(t_philo philo)
 {
-	printf(YELLOW"[%ld] philo [%d] has taken a fork\n",
+	printf(YELLOW"[%ld] philo %d has taken a fork\n",
 		get_time() - philo.info->time, philo.id);
-	printf(MAGENTA"[%ld] philo [%d] is sleeping\n",
+	printf(MAGENTA"[%ld] philo %d is sleeping\n",
 		get_time() - philo.info->time, philo.id);
-	printf(GREY"[%ld] philo [%d] is thinking\n",
+	printf(GREY"[%ld] philo %d is thinking\n",
 		get_time() - philo.info->time, philo.id);
-	printf(CYAN"[%ld] philo [%d] is eating\n",
+	printf(CYAN"[%ld] philo %d is eating\n",
 		get_time() - philo.info->time, philo.id);
-	printf(RED"[%ld] philo [%d] died\n",
+	printf(RED"[%ld] philo %d died\n",
 		get_time() - philo.info->time, philo.id);
 	printf(RESET);
 }
