@@ -4,11 +4,9 @@ long	get_time(void)
 {
 	struct timeval	tv;
 	struct timezone	tz;
-	long			time;
 	
 	gettimeofday(&tv, &tz);
-	time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-	return (time);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
 void	first_data(t_info *info)
@@ -25,6 +23,7 @@ void	first_data(t_info *info)
 		info->must_eat = info->nbrs[4];
 	else
 		info->must_eat = 0;
+	pthread_mutex_init(&info->print, NULL);
 	info->time = get_time();
 }
 
@@ -33,23 +32,30 @@ void	my_usleep(long time)
 	long	now;
 
 	now = get_time();
-	while (get_time() - now < time)
-		;
+	printf("%ld\n", time);
+	while (get_time() - now <= time) ;
+	printf("hjskkñ\n");
 }
 
-void	print_actions(t_philo philo)
+void	print_actions(t_philo *philo, int num)
 {
-	printf(YELLOW"[%ld] philo %d has taken a fork\n",
-		get_time() - philo.info->time, philo.id);
-	printf(MAGENTA"[%ld] philo %d is sleeping\n",
-		get_time() - philo.info->time, philo.id);
-	printf(GREY"[%ld] philo %d is thinking\n",
-		get_time() - philo.info->time, philo.id);
-	printf(CYAN"[%ld] philo %d is eating\n",
-		get_time() - philo.info->time, philo.id);
-	printf(RED"[%ld] philo %d died\n",
-		get_time() - philo.info->time, philo.id);
-	printf(RESET);
+	pthread_mutex_lock(&philo->info->print);
+	if (num == 0)
+		printf(YELLOW"[%ld] philo %d has taken a fork %ld\n"RESET,
+			get_time() - philo->info->time, philo->id, philo->id_thread);
+	else if (num == 1)
+		printf(CYAN"[%ld] philo %d is eating %ld\n"RESET,
+			get_time() - philo->info->time, philo->id, philo->id_thread);
+	else if (num == 2)
+		printf(MAGENTA"[%ld] philo %d is sleeping\n"RESET,
+			get_time() - philo->info->time, philo->id);
+	else if (num == 3)
+		printf(GREY"[%ld] philo %d is thinking\n"RESET,
+			get_time() - philo->info->time, philo->id);
+	else if (num == 4)
+		printf(RED"[%ld] philo %d died\n"RESET,
+			get_time() - philo->info->time, philo->id);
+	pthread_mutex_unlock(&philo->info->print);
 }
 
 void	show_info(t_info *info)

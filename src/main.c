@@ -23,7 +23,6 @@ int main(int argc, char **argv)
 	{
 		check_errors(argv, argc, info);
 		first_data(info);
-		//show_info(info);
 		make_philo(info);
 	}
 	

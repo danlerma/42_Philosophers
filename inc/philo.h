@@ -26,6 +26,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <pthread.h>
+# include <unistd.h>
 # include <sys/time.h>
 
 typedef struct s_info
@@ -39,7 +40,8 @@ typedef struct s_info
 	int				t_die;
 	int				must_eat;
 	long			time;
-	struct s_philo	**philo;
+	pthread_mutex_t	print;
+	struct s_philo	**philos;
 }t_info;
 
 typedef struct s_philo
@@ -47,7 +49,7 @@ typedef struct s_philo
 	pthread_t		id_thread;
 	pthread_mutex_t	m_fork;
 	int				id;
-	int				prueba;
+	long				eaten;
 	t_info			*info;
 }t_philo;
 
@@ -58,12 +60,12 @@ void	make_philo(t_info *info);
 //philo_utils
 long	get_time(void);
 void	first_data(t_info *info);
-void	print_actions(t_philo philo);
+void	print_actions(t_philo *philo, int num);
 void	show_info(t_info *info);
 void	my_usleep(long time);
 //actions
 void	eat(t_philo *philo);
-void	sleep(t_philo *philo);
+void	sleepy(t_philo *philo);
 void	dead(t_philo *philo, t_info *info);
 //libft
 char	*ft_strjoin(char const *s1, char const *s2);
