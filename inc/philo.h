@@ -38,6 +38,7 @@ typedef struct s_info
 	int				t_think;
 	int				t_sleep;
 	int				t_die;
+	int				die;
 	int				must_eat;
 	long			time;
 	pthread_mutex_t	print;
@@ -49,7 +50,8 @@ typedef struct s_philo
 	pthread_t		id_thread;
 	pthread_mutex_t	m_fork;
 	int				id;
-	long				eaten;
+	int				num_eat;
+	long			l_eat;
 	t_info			*info;
 }t_philo;
 
@@ -67,6 +69,7 @@ void	my_usleep(long time);
 void	eat(t_philo *philo);
 void	sleepy(t_philo *philo);
 void	dead(t_philo *philo, t_info *info);
+void	shes_dead(t_philo *philo);
 //libft
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *c);

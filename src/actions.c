@@ -1,5 +1,18 @@
 #include<philo.h>
 
+void	shes_dead(t_philo *philo)
+{
+	int	time;
+
+	time = get_time() - philo->info->time;
+	printf("TIME %ld\n", time - philo->l_eat);
+	if (time - philo->l_eat >= philo->info->t_die)
+	{
+		philo->info->die++;
+		exit(0);
+	}
+}
+
 static void	take_fork(t_philo *philo, int pos)
 {
 	pthread_mutex_lock(&philo->info->philos[pos]->m_fork);
@@ -10,7 +23,8 @@ void	eat(t_philo *philo)
 {
 	int	pos;
 
-	pos = philo->id;
+	pos = philo->id - 1;
+	shes_dead(philo);
 	take_fork(philo, pos);
 	if (pos == philo->info->n_forks - 1)
 	{
@@ -24,10 +38,9 @@ void	eat(t_philo *philo)
 	}
 	print_actions(philo, 1);
 	my_usleep(philo->info->t_eat);
-	philo->eaten = get_time() - philo->info->time;
-	printf("%ld", philo->eaten);
+	philo->l_eat = get_time() - philo->info->time;
 	pthread_mutex_unlock(&philo->info->philos[pos]->m_fork);
-	pthread_mutex_unlock(&philo->info->philos[philo->id]->m_fork);
+	pthread_mutex_unlock(&philo->info->philos[philo->id - 1]->m_fork);
 }
 
 void	sleepy(t_philo *philo)

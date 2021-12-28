@@ -24,6 +24,7 @@ void	first_data(t_info *info)
 	else
 		info->must_eat = 0;
 	pthread_mutex_init(&info->print, NULL);
+	info->die = 0;
 	info->time = get_time();
 }
 
@@ -32,9 +33,7 @@ void	my_usleep(long time)
 	long	now;
 
 	now = get_time();
-	printf("%ld\n", time);
 	while (get_time() - now <= time) ;
-	printf("hjskkñ\n");
 }
 
 void	print_actions(t_philo *philo, int num)
