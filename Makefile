@@ -52,7 +52,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $^ -o $@ $(CFLAGS) 
 
-debug: CFLAGS += -fsanitize=address -g3
+debug: CFLAGS += -fsanitize=leak -g3
 debug: $(NAME)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c

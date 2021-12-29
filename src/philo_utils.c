@@ -25,7 +25,9 @@ void	first_data(t_info *info)
 		info->must_eat = 0;
 	pthread_mutex_init(&info->print, NULL);
 	info->die = 0;
-	info->time = get_time();
+	info->philos = malloc(info->n_forks + 1 * sizeof(t_philo *));
+	if (info->philos == NULL)
+		exit(0);
 }
 
 void	my_usleep(long time)
