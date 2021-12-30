@@ -28,8 +28,8 @@ void	first_data(t_info *info)
 	info->philos = malloc(info->n_forks + 1 * sizeof(t_philo *));
 	if (info->philos == NULL)
 		exit(0);
+	info->time = get_time();
 }
-
 void	my_usleep(long time)
 {
 	long	now;

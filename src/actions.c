@@ -2,17 +2,18 @@
 
 void	shes_dead(t_philo *philo)
 {
-	long	time;
-
-	time = get_time() - philo->info->time;
-	printf("LEAT: %ld    hilo %d\n AHORA:%ld\n", philo->l_eat, philo->id, time);
-	printf("Tiempo para comer: %d\n", philo->info->t_die - philo->info->t_sleep);
-	printf("COMER %d: %ld\n", philo->id, time - philo->l_eat);
-	if (time - philo->l_eat > philo->info->t_die - philo->info->t_sleep)
+	/*printf("HILO: %d\n", philo->id);
+	printf("Time: %ld\n", get_time());
+	printf("LAST EAT: %ld\n", philo->l_eat);
+	printf("Resta = %ld\n", get_time() - philo->l_eat);*/
+	if (philo->l_eat != 0)
 	{
-		philo->info->die++;
-		print_actions(philo, 4);
-		exit(0);
+		if ((get_time() - philo->l_eat) > philo->info->t_die)
+		{
+			print_actions(philo, 4);
+			philo->info->die++;
+			exit(0);
+		}
 	}
 }
 
@@ -39,8 +40,8 @@ void	eat(t_philo *philo)
 		pos++;
 	}
 	print_actions(philo, 1);
+	philo->l_eat = get_time()/* - philo->info->time philo->info->t_eat*/;
 	my_usleep(philo->info->t_eat);
-	philo->l_eat = get_time() - philo->info->time - philo->info->t_eat;
 	pthread_mutex_unlock(&philo->info->philos[pos]->m_fork);
 	pthread_mutex_unlock(&philo->info->philos[philo->id - 1]->m_fork);
 }

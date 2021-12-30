@@ -13,6 +13,7 @@
 		eat(philo);
 		shes_dead(philo);
 		sleepy(philo);
+		shes_dead(philo);
 	}
 	return (NULL);
 }
@@ -31,8 +32,6 @@ void	make_philo(t_info *info)
 		philo[i].info = info;
 		philo[i].id = i + 1;
 		info->philos[i] = &philo[i];
-		philo[i].l_eat = 0;
-		info->time = get_time();
 		pthread_mutex_init(&philo[i].m_fork, NULL);
 		pthread_create(&philo[i].id_thread, NULL, create_philo, &philo[i]);
 		i++;
