@@ -65,7 +65,7 @@ static void	check_numbers(char **split, t_info *info)
 		if (atoi_update(split[i]) > MAX_INT || atoi_update(split[i]) < MIN_INT)
 			exit(0);
 	}
-	info->nbrs = ft_calloc(i, sizeof(int));
+	info->nbrs = malloc(i * sizeof(int));
 	if (info->nbrs == NULL)
 		exit(0);
 	y = -1;

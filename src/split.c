@@ -12,20 +12,6 @@
 
 #include<philo.h>
 
-char	**ft_free_malloc(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-	return (NULL);
-}
-
 static int	count_sep(const char *s, char c, char type)
 {
 	int	i;
@@ -96,9 +82,10 @@ char	**ft_split(char const *s, char c)
 	if (s == NULL)
 		return (NULL);
 	nrows = count_rows(s, c);
-	str = ft_calloc((nrows + 1), sizeof(char *));
+	str = malloc((nrows + 1) * sizeof(char *));
 	if (str == NULL)
 		return (NULL);
+	str[nrows] = "\0";
 	str = assing_str(str, s, c, nrows);
 	return (str);
 }

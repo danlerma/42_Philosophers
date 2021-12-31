@@ -19,7 +19,7 @@ static void	dead(t_philo *philo, t_info *info)
 
 	philo = (t_philo *) p;
 	if (philo->id % 2 == 0)
-		usleep(10000);
+		usleep(100);
 	while (1)
 	{
 		if (philo->cnt == philo->info->must_eat)

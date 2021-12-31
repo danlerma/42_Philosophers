@@ -64,24 +64,16 @@ char	*ft_strdup(const char *s1)
 	return (str);
 }
 
-void	*ft_calloc(size_t count, size_t size)
+char	**ft_free_malloc(char **str)
 {
-	void	*ptr;
+	int	i;
 
-	ptr = malloc(count * size);
-	if (ptr == NULL)
-		return (NULL);
-	ft_bzero(ptr, count * size);
-	return (ptr);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	unsigned int		i;
-	char				*str;
-
-	i = -1;
-	str = (char *) s;
-	while (++i < n)
-		str[i] = 0;
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+	return (NULL);
 }
