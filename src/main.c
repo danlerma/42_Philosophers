@@ -25,6 +25,5 @@ int main(int argc, char **argv)
 		first_data(info);
 		make_philo(info);
 	}
-	
 	return (0);
 }

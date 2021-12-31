@@ -35,7 +35,6 @@ typedef struct s_info
 	int				argc;
 	int				n_forks;
 	int				t_eat;
-	int				t_think;
 	int				t_sleep;
 	int				t_die;
 	int				die;
@@ -52,6 +51,7 @@ typedef struct s_philo
 	int				id;
 	int				num_eat;
 	long			l_eat;
+	int				cnt;
 	t_info			*info;
 }t_philo;
 
@@ -63,12 +63,10 @@ void	make_philo(t_info *info);
 long	get_time(void);
 void	first_data(t_info *info);
 void	print_actions(t_philo *philo, int num);
-void	show_info(t_info *info);
 void	my_usleep(long time);
 //actions
 void	eat(t_philo *philo);
 void	sleepy(t_philo *philo);
-void	dead(t_philo *philo, t_info *info);
 void	shes_dead(t_philo *philo);
 //libft
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -77,7 +75,7 @@ char	**ft_split(char const *s, char c);
 void	*ft_calloc(size_t count, size_t size);
 char	**ft_free_malloc(char **str);
 void	ft_bzero(void *s, size_t n);
-int 	ft_isdigit(int c);
+//int 	ft_isdigit(int c);
 long	atoi_update(const char *str);
 char	*ft_strdup(const char *s1);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);

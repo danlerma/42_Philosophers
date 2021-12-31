@@ -12,7 +12,7 @@
 
 #include<philo.h>
 
-int	ft_isdigit(int c)
+static int	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)
 		return (1);
@@ -60,9 +60,9 @@ long	atoi_update(const char *str)
 	i = check_space_sign(str, &sign);
 	while (str[i] >= 48 && str[i] <= 57)
 	{
-		if (result * sign > 2147483647)
+		if (result * sign > MAX_INT)
 			return ((long)MAX_INT + 1);
-		else if (result * sign < -2147483648)
+		else if (result * sign < MIN_INT)
 			return (MIN_INT - 1);
 		else
 			result = result * 10 + str[i] - '0';
