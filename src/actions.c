@@ -1,9 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   actions.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/03 19:12:20 by dlerma-c          #+#    #+#             */
+/*   Updated: 2022/01/05 16:48:30 by dlerma-c         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include<philo.h>
 
 void	shes_dead(t_philo *philo)
 {
 	if (philo->l_eat != 0)
 	{
+		printf("LAST EAT: %ld\n", philo->l_eat);
+		printf("RESTA: %ld\n", get_time() - philo->l_eat);
 		if ((get_time() - philo->l_eat) > philo->info->t_die)
 		{
 			print_actions(philo, 4);
@@ -21,7 +35,7 @@ void	shes_dead(t_philo *philo)
 
 static void	take_fork(t_philo *philo, int pos)
 {
-	pthread_mutex_lock(&philo->info->philos[pos]->m_fork);
+	pthread_mutex_lock(&philo->info->philos[0][pos].m_fork);
 	print_actions(philo, 0);
 }
 
@@ -44,10 +58,10 @@ void	eat(t_philo *philo)
 	shes_dead(philo);
 	print_actions(philo, 1);
 	philo->l_eat = get_time();
-	my_usleep(philo->info->t_eat);
 	philo->cnt++;
-	pthread_mutex_unlock(&philo->info->philos[pos]->m_fork);
-	pthread_mutex_unlock(&philo->info->philos[philo->id - 1]->m_fork);
+	my_usleep(philo->info->t_eat);
+	pthread_mutex_unlock(&philo->info->philos[0][pos].m_fork);
+	pthread_mutex_unlock(&philo->info->philos[0][philo->id - 1].m_fork);
 }
 
 void	sleepy(t_philo *philo)

@@ -6,7 +6,7 @@
 #    By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 20:00:13 by dlerma-c          #+#    #+#              #
-#    Updated: 2021/12/14 15:26:54 by dlerma-c         ###   ########.fr        #
+#    Updated: 2022/01/03 19:32:55 by dlerma-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $^ -o $@ $(CFLAGS) 
 
-debug: CFLAGS += -fsanitize=leak -g3
+debug: CFLAGS += -fsanitize=address -g3
 debug: $(NAME)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c

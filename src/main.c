@@ -6,15 +6,15 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 20:00:30 by dlerma-c          #+#    #+#             */
-/*   Updated: 2021/12/14 15:23:57 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/01/04 10:22:44 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<philo.h>
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_info *info;
+	t_info	*info;
 
 	info = malloc(1 * sizeof(t_info));
 	if (info == NULL)
@@ -25,5 +25,6 @@ int main(int argc, char **argv)
 		first_data(info);
 		make_philo(info);
 	}
+	free(info);
 	return (0);
 }
