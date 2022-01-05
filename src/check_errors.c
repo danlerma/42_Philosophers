@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 14:59:44 by dlerma-c          #+#    #+#             */
-/*   Updated: 2021/12/14 15:28:18 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/01/05 19:32:59 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-static void	check_numbers(char **split, t_info *info)
+static int	check_numbers(char **split, t_info *info)
 {
 	int	i;
 	int	y;
@@ -61,20 +61,21 @@ static void	check_numbers(char **split, t_info *info)
 	{
 		if ((split[i][0] == 43 || split[i][0] == 45) &&
 			ft_strlen(split[i]) == 1)
-			exit(0);
+			return (1);
 		if (atoi_update(split[i]) > MAX_INT || atoi_update(split[i]) < MIN_INT)
-			exit(0);
+			return (1);
 	}
 	info->nbrs = malloc(i * sizeof(int));
 	if (info->nbrs == NULL)
-		exit(0);
+		return (1);
 	y = -1;
 	while (++y < i)
 	{
 		info->nbrs[y] = atoi_update(split[y]);
 		if (info->nbrs[y] < 1)
-			exit(0);
+			return (1);
 	}
+	return (0);
 }
 
 static char	*union_argv(char **argv, int argc)
@@ -98,7 +99,7 @@ static char	*union_argv(char **argv, int argc)
 	return (str);
 }
 
-void	check_errors(char **argv, int argc, t_info *info)
+int	check_errors(char **argv, int argc, t_info *info)
 {
 	char	*str;
 	char	**split;
@@ -109,12 +110,14 @@ void	check_errors(char **argv, int argc, t_info *info)
 	{
 		ft_free_malloc(split);
 		free(str);
-		exit(0);
+		return (1);
 	}
 	info->argc = argc - 1;
-	check_numbers(split, info);
+	if (check_numbers(split, info) == 1)
+		return (1);
 	ft_free_malloc(split);
 	free(str);
 	if (info->nbrs[0] > 200)
-		exit(0);
+		return (1);
+	return (0);
 }

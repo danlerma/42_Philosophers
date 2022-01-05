@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:25:23 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/01/05 16:49:12 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/01/05 19:41:18 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 long	get_time(void)
 {
 	struct timeval	tv;
-	struct timezone	tz;
 
-	gettimeofday(&tv, &tz);
+	gettimeofday(&tv, NULL);
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void	first_data(t_info *info)
+int	first_data(t_info *info)
 {
 	info->n_forks = info->nbrs[0];
 	info->t_die = info->nbrs[1];
@@ -35,8 +34,9 @@ void	first_data(t_info *info)
 	info->die = 0;
 	info->philos = malloc(info->n_forks + 1 * sizeof(t_philo *));
 	if (info->philos == NULL)
-		exit(0);
+		return (1);
 	info->time = get_time();
+	return (0);
 }
 
 void	my_usleep(long time)
@@ -67,4 +67,16 @@ void	print_actions(t_philo *philo, int num)
 		printf(RED"[%ld] philo %d died\n"RESET,
 			get_time() - philo->info->time, philo->id);
 	pthread_mutex_unlock(&philo->info->print);
+}
+
+void	unlock(t_philo *philo)
+{
+	int	i;
+
+	i = 0;
+	while (i < philo->info->n_forks)
+	{
+		pthread_mutex_unlock(&philo->info->philos[0][i].m_fork);
+		i++;
+	}
 }

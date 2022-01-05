@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 20:02:44 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/01/03 19:46:51 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/01/05 19:35:48 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,19 @@ typedef struct s_philo
 }t_philo;
 
 //check errors
-void	check_errors(char **argv, int argc, t_info *info);
+int		check_errors(char **argv, int argc, t_info *info);
 //make_philo
-void	make_philo(t_info *info);
+int		make_philo(t_info *info);
 //philo_utils
 long	get_time(void);
-void	first_data(t_info *info);
+int		first_data(t_info *info);
 void	print_actions(t_philo *philo, int num);
 void	my_usleep(long time);
+void	unlock(t_philo *philo);
 //actions
 void	eat(t_philo *philo);
 void	sleepy(t_philo *philo);
-void	shes_dead(t_philo *philo);
+int		shes_dead(t_philo *philo);
 //libft
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *c);

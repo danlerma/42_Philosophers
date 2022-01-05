@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 14:59:59 by dlerma-c          #+#    #+#             */
-/*   Updated: 2021/12/14 15:20:14 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/01/05 19:19:35 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ long	atoi_update(const char *str)
 	i = 0;
 	sign = 1;
 	result = 0;
+	if (ft_isdigit(str[0]) == 0)
+		return (MIN_INT - 1);
 	i = check_space_sign(str, &sign);
 	while (str[i] >= 48 && str[i] <= 57)
 	{
