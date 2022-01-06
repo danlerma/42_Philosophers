@@ -6,7 +6,7 @@
 #    By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 20:00:13 by dlerma-c          #+#    #+#              #
-#    Updated: 2022/01/03 19:32:55 by dlerma-c         ###   ########.fr        #
+#    Updated: 2022/01/06 14:14:44 by dlerma-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ INC_PATH = inc
 #                                    SRCS                                      #
 #··············································································#
 
-SRCS = main.c atoi_update.c check_errors.c libft.c split.c make_philo.c\
+SRCS = main.c atoi_update.c check_errors.c utils.c split.c make_philo.c\
 		philo_utils.c actions.c
 OBJS_NAME = $(SRCS:%.c=%.o)
 OBJS = $(addprefix $(OBJ_PATH)/, $(OBJS_NAME))
