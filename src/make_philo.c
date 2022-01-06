@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:21:13 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/01/05 19:47:48 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/01/06 14:08:05 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	dead(t_philo *philo, t_info *info)
 	int	i;
 
 	i = 0;
-	while (i < info->nbrs[0])
+	while (i < info->n_forks)
 	{
 		pthread_join(philo[i].id_thread, NULL);
 		i++;
@@ -54,9 +54,12 @@ int	make_philo(t_info *info)
 	t_philo		*philo;
 
 	i = 0;
-	philo = malloc(info->nbrs[0] * sizeof(t_philo));
+	philo = NULL;
+	philo = malloc(info->n_forks + 1 * sizeof(t_philo));
 	if (philo == NULL)
 		return (0);
+	info->philos[info->n_forks] = NULL;
+	free(info->philos);
 	info->philos = &philo;
 	while (i < info->n_forks)
 	{
@@ -70,5 +73,6 @@ int	make_philo(t_info *info)
 		i++;
 	}
 	dead(philo, info);
+	free(philo);
 	return (0);
 }

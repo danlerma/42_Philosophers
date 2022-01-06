@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:12:20 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/01/05 20:04:20 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/01/06 13:23:53 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 int	shes_dead(t_philo *philo)
 {
+	if (philo->info->die == 1)
+		return (1);
 	if (philo->l_eat != 0)
 	{
-		//printf("LAST EAT: %ld\n", philo->l_eat);
-		//printf("RESTA: %ld\n", get_time() - philo->l_eat);
 		if ((get_time() - philo->l_eat) > philo->info->t_die)
 		{
 			print_actions(philo, 4);
-			//pthread_mutex_lock(&philo->info->print);
-			unlock(philo);
 			philo->info->die++;
+			unlock(philo);
 			return (1);
 		}
 	}
 	if (philo->info->n_forks == 1)
 	{
 		print_actions(philo, 0);
+		my_usleep(philo->info->t_eat);
 		print_actions(philo, 4);
 		return (1);
 	}
@@ -58,7 +58,8 @@ void	eat(t_philo *philo)
 		take_fork(philo, pos + 1);
 		pos++;
 	}
-	shes_dead(philo);
+	if (shes_dead(philo) == 1)
+		return ;
 	print_actions(philo, 1);
 	philo->l_eat = get_time();
 	philo->cnt++;
