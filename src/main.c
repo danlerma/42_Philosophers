@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 20:00:30 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/01/06 17:35:22 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/01/09 08:46:12 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,5 @@ int	main(int argc, char **argv)
 			return (0);
 		make_philo(info);
 	}
-	system("leaks -q philo > /dev/ttys001");
 	return (0);
 }

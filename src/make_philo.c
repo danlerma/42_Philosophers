@@ -6,7 +6,7 @@
 /*   By: dlerma-c <dlerma-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:21:13 by dlerma-c          #+#    #+#             */
-/*   Updated: 2022/01/06 17:35:44 by dlerma-c         ###   ########.fr       */
+/*   Updated: 2022/01/10 10:08:44 by dlerma-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ int	make_philo(t_info *info)
 	philo = malloc((info->n_forks + 1) * sizeof(t_philo));
 	if (philo == NULL)
 		return (0);
-	//info->philos[info->n_forks] = NULL;
 	free(info->philos);
-	//printf("PTR ----> %p\n", info->philos);
 	info->philos = &philo;
 	while (i < info->n_forks)
 	{
